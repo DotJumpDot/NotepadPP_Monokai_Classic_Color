@@ -71,3 +71,45 @@ The `ext="yml yaml"` attribute is what triggers Notepad++ to use this lexer auto
 - The leftover "TEST" strings (`if else for while`, `bool long int char`, `ooooo`, etc.) that were sprinkled in keyword / string / number slots in the original fork were left in place so the diff vs. upstream stays minimal; they don't affect rendering because Notepad++ only uses the colour of those styles, not their (unused) keyword list.
 - Header comment now credits the classic Monokai palette by Wimer Hazenberg.
 - README rewritten to reflect the new name, the YAML language, and the change log.
+
+## 5. Re-prioritised colour hierarchy (focus on red and orange)
+
+After the first re-theme the result still felt too blue — cyan was sitting on TYPE WORD in C-family, ATTRIBUTE in HTML/XML, PSEUDOCLASS in CSS, plus brace highlight and smart-highlight chrome. The new priority is **red > orange > green > blue**.
+
+Across the whole theme:
+
+| Token | Before | After |
+| --- | --- | --- |
+| `NUMBER` (every lexer) | `AE81FF` purple | `FD971F` **orange** |
+| `TYPE WORD` / `TYPEWORD` (C, C++, Java, C#, RC, Tcl, ObjC) | `66D9EF` cyan | `FD971F` **orange** |
+| `ATTRIBUTE` / `ATTRIBUTEUNKNOWN` (HTML, XML) | `66D9EF` | `F92672` **red** |
+| `XMLSTART` / `XMLEND` | `66D9EF` | `F92672` **red** |
+| `ENTITY` | `66D9EF` | `FD971F` **orange** |
+| `CDATA` | `66D9EF` | `E6DB74` yellow |
+| `PSEUDOCLASS` / `UNKNOWN_PSEUDOCLASS` (CSS) | `66D9EF` | `FD971F` **orange** |
+| `CSS VALUE` | `66D9EF` | `A6E22E` green |
+| `DEFNAME` (Python) | `66D9EF` | `FD971F` **orange** |
+| `WORD` (JavaScript) | `66D9EF` | `F92672` red |
+| `INSTRUCTION WORD` (everywhere) | `fontStyle="0"` | `fontStyle="1"` **bold** so red really pops |
+| Brace highlight / Smart highlight / Incremental highlight | `66D9EF` | unchanged (kept cyan only on chrome that needs it) |
+
+Resulting cyan count in lexer styles: **0**. The GlobalStyles block still keeps cyan on a few chrome items (brace highlight, smart highlight, selected line background, incremental highlight) because those are not code tokens.
+
+### YAML (the file in the screenshot)
+
+The YAML lexer specifically was pushed to scream Monokai:
+
+| StyleID | Token | Colour | Style | Notes |
+| --- | --- | --- | --- | --- |
+| 0 | DEFAULT | `A6E22E` green | regular | plain scalars like `GRASS_BLOCK` |
+| 1 | COMMENT | `75715E` olive | italic | `# this is a comment` |
+| 2 | IDENTIFIER | `F92672` red | regular | map keys (`game:`, `area:`, `x1:`) |
+| 3 | KEYWORD | `F92672` red | **bold** | `true` `false` `null` `yes` `no` `on` `off` `~` |
+| 4 | NUMBER | `FD971F` orange | regular | `-56`, `100`, `1.5` |
+| 5 | REFERENCE | `FD971F` orange | regular | `&anchor` `*alias` |
+| 6 | DOCUMENT | `F92672` red | **bold** | `---` `...` |
+| 7 | TEXT | `A6E22E` green | regular | quoted strings |
+| 8 | ERROR | `F92672` red | regular | lexer errors |
+| 9 | OPERATOR | `E6DB74` yellow | regular | `:` `-` `>` `|` `?` |
+
+So the YAML file will now read as: **red keys, red-bold booleans, orange numbers, green plain values, yellow colons/hyphens, olive-italic comments** on the dark `272822` background.
