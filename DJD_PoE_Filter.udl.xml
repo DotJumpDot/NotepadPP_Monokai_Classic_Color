@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--//
+PoE Filter (DJD Monokai) - syntax highlighting for Path of Exile / Path of Exile 2
+loot filter files (.filter), coloured with the DJD Classic Monokai palette
+(classic Monokai by Wimer Hazenberg).
+
+Notepad++ has no built-in lexer for loot filters, so this is a User Defined
+Language. UDL colours are NOT controlled by themes - they are hardcoded here
+on purpose so .filter files match DJD Classic Monokai.
+
+Install: copy this file to %APPDATA%\Notepad++\userDefineLangs\ and restart
+Notepad++. Files with extension .filter are picked up automatically.
+
+Colour map (see State Changes.md section 7):
+  Show / Hide        F92672 red    bold
+  conditions         FD971F orange
+  actions            A6E22E green
+  strings / values   E6DB74 yellow
+  numbers            FD971F orange
+  operators          F92672 red
+  # comments         75715E olive  italic
+//-->
+<NotepadPlus>
+    <UserLang name="PoE Filter (DJD Monokai)" ext="filter" udlVersion="2.1">
+        <Settings>
+            <Global caseIgnored="yes" allowFoldOfComments="no" foldCompact="no" forcePureLC="0" decimalSeparator="0" />
+            <Prefix Keywords1="no" Keywords2="no" Keywords3="no" Keywords4="no" Keywords5="no" Keywords6="no" Keywords7="no" Keywords8="no" />
+        </Settings>
+        <KeywordLists>
+            <Keywords name="Comments">00# 01 02((EOL)) 03 04</Keywords>
+            <Keywords name="Numbers, prefix1">0123456789</Keywords>
+            <Keywords name="Numbers, prefix2"></Keywords>
+            <Keywords name="Numbers, extras1">0123456789</Keywords>
+            <Keywords name="Numbers, extras2"></Keywords>
+            <Keywords name="Numbers, suffix1"></Keywords>
+            <Keywords name="Numbers, suffix2"></Keywords>
+            <Keywords name="Numbers, range"></Keywords>
+            <Keywords name="Operators1">&gt;= &lt;= &gt; &lt; =</Keywords>
+            <Keywords name="Operators2"></Keywords>
+            <Keywords name="Folders in code1, open"></Keywords>
+            <Keywords name="Folders in code1, middle"></Keywords>
+            <Keywords name="Folders in code1, close"></Keywords>
+            <Keywords name="Folders in code2, open"></Keywords>
+            <Keywords name="Folders in code2, middle"></Keywords>
+            <Keywords name="Folders in code2, close"></Keywords>
+            <Keywords name="Folders in comment, open"></Keywords>
+            <Keywords name="Folders in comment, middle"></Keywords>
+            <Keywords name="Folders in comment, close"></Keywords>
+            <Keywords name="Keywords1">Show Hide</Keywords>
+            <Keywords name="Keywords2">AreaLevel AnyEnchantment AnyOf BaseType BaseDefencePercentile Class Corrupted DropLevel EnchantmentPassiveNode EnchantmentPassiveNum FracturedItem GemLevel GemQualityType HasEnchantment HasExplicitMod Height Identified ItemLevel LinkedSockets MapTier Mirrored Quality Rarity ReplicaVariant Sockets SocketGroup StackSize SynthesisedItem TransfiguredGem Width</Keywords>
+            <Keywords name="Keywords3">Continue CustomAlertSound CustomAlertSoundOptional DisableDropSound DisableDropSoundIfAlertSound EnableDropSound ExecuteAfterFilter MinimapIcon PlayAlertSound PlayAlertSoundPositional PlayEffect SetBackgroundColor SetBorderColor SetFontSize SetTextColor</Keywords>
+            <Keywords name="Keywords4">True False Blue Red Green Yellow Cyan Grey Orange Pink Purple Brown White Black Aquamarine Silver Crimson Violet Sapphire Emerald Topaz Amber Diamond Circle Square Star Hexagon Triangle Moon Raindrop Cross Kite Pentagon</Keywords>
+            <Keywords name="Keywords5"></Keywords>
+            <Keywords name="Keywords6"></Keywords>
+            <Keywords name="Keywords7"></Keywords>
+            <Keywords name="Keywords8"></Keywords>
+            <Keywords name="Delimiters">00&quot; 01\ 02&quot; 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23</Keywords>
+        </KeywordLists>
+        <Styles>
+            <WordsStyle name="DEFAULT" fgColor="F8F8F2" bgColor="272822" colorStyle="1" fontName="" fontStyle="0" nesting="0" />
+            <WordsStyle name="COMMENTS" fgColor="75715E" bgColor="272822" colorStyle="1" fontName="" fontStyle="2" nesting="0" />
+            <WordsStyle name="LINE COMMENTS" fgColor="75715E" bgColor="272822" colorStyle="1" fontName="" fontStyle="2" nesting="0" />
+            <WordsStyle name="NUMBERS" fgColor="FD971F" bgColor="272822" colorStyle="1" fontName="" fontStyle="0" nesting="0" />
+            <WordsStyle name="KEYWORDS1" fgColor="F92672" bgColor="272822" colorStyle="1" fontName="" fontStyle="1" nesting="0" />
+            <WordsStyle name="KEYWORDS2" fgColor="FD971F" bgColor="272822" colorStyle="1" fontName="" fontStyle="0" nesting="0" />
+            <WordsStyle name="KEYWORDS3" fgColor="A6E22E" bgColor="272822" colorStyle="1" fontName="" fontStyle="0" nesting="0" />
+            <WordsStyle name="KEYWORDS4" fgColor="E6DB74" bgColor="272822" colorStyle="1" fontName="" fontStyle="0" nesting="0" />
+            <WordsStyle name="KEYWORDS5" fgColor="F8F8F2" bgColor="272822" colorStyle="0" fontName="" fontStyle="0" nesting="0" />
+            <WordsStyle name="KEYWORDS6" fgColor="F8F8F2" bgColor="272822" colorStyle="0" fontName="" fontStyle="0" nesting="0" />
+            <WordsStyle name="KEYWORDS7" fgColor="F8F8F2" bgColor="272822" colorStyle="0" fontName="" fontStyle="0" nesting="0" />
+            <WordsStyle name="KEYWORDS8" fgColor="F8F8F2" bgColor="272822" colorStyle="0" fontName="" fontStyle="0" nesting="0" />
+            <WordsStyle name="OPERATORS" fgColor="F92672" bgColor="272822" colorStyle="1" fontName="" fontStyle="0" nesting="0" />
+            <WordsStyle name="FOLDER IN CODE1" fgColor="F8F8F2" bgColor="272822" colorStyle="0" fontName="" fontStyle="0" nesting="0" />
+            <WordsStyle name="FOLDER IN CODE2" fgColor="F8F8F2" bgColor="272822" colorStyle="0" fontName="" fontStyle="0" nesting="0" />
+            <WordsStyle name="FOLDER IN COMMENT" fgColor="F8F8F2" bgColor="272822" colorStyle="0" fontName="" fontStyle="0" nesting="0" />
+            <WordsStyle name="DELIMITERS1" fgColor="E6DB74" bgColor="272822" colorStyle="1" fontName="" fontStyle="0" nesting="0" />
+            <WordsStyle name="DELIMITERS2" fgColor="F8F8F2" bgColor="272822" colorStyle="0" fontName="" fontStyle="0" nesting="0" />
+            <WordsStyle name="DELIMITERS3" fgColor="F8F8F2" bgColor="272822" colorStyle="0" fontName="" fontStyle="0" nesting="0" />
+            <WordsStyle name="DELIMITERS4" fgColor="F8F8F2" bgColor="272822" colorStyle="0" fontName="" fontStyle="0" nesting="0" />
+            <WordsStyle name="DELIMITERS5" fgColor="F8F8F2" bgColor="272822" colorStyle="0" fontName="" fontStyle="0" nesting="0" />
+            <WordsStyle name="DELIMITERS6" fgColor="F8F8F2" bgColor="272822" colorStyle="0" fontName="" fontStyle="0" nesting="0" />
+            <WordsStyle name="DELIMITERS7" fgColor="F8F8F2" bgColor="272822" colorStyle="0" fontName="" fontStyle="0" nesting="0" />
+            <WordsStyle name="DELIMITERS8" fgColor="F8F8F2" bgColor="272822" colorStyle="0" fontName="" fontStyle="0" nesting="0" />
+        </Styles>
+    </UserLang>
+</NotepadPlus>

@@ -113,3 +113,37 @@ The YAML lexer specifically was pushed to scream Monokai:
 | 9 | OPERATOR | `E6DB74` yellow | regular | `:` `-` `>` `|` `?` |
 
 So the YAML file will now read as: **red keys, red-bold booleans, orange numbers, green plain values, yellow colons/hyphens, olive-italic comments** on the dark `272822` background.
+
+## 6. Fixed Markdown bold/italic being dark blue on the dark background
+
+**Symptom:** in `.md` files, emphasis like `**เขียนใหม่ทั้งการ์ด**` rendered as navy `000080` (bold) on the theme's brown-ish `272822` background — nearly unreadable.
+
+**Root cause:** Notepad++ (8.4.3+) does not highlight Markdown through theme lexers at all. It ships a preinstalled **User Defined Language** ("Markdown (preinstalled)" from the markdown-plus-plus project), whose colours live in their own file and are therefore invisible to any theme XML — including this one. The light-mode variant of that UDL was designed for white backgrounds, so its emphasis family (KEYWORDS3–7 / DELIMITERS3–7: `**bold**`, `*italic*`, `***both***`, `__underline-bold__`) was all `000080`.
+
+**Fix (outside the repo):** in `%AppData%\Notepad++\userDefineLangs\markdown._preinstalled.udl.xml`, all ten emphasis styles were changed from `fgColor="000080"` to the theme's Monokai cyan `66D9EF`. Bold / italic / bold-italic stay distinguishable via their font styles. Deliberate exception to the "cyan count in lexer styles: 0" rule from section 5 — Markdown emphasis isn't a lexer style, and cyan-on-dark is exactly what it needs.
+
+Notes:
+
+- Applies while Notepad++ **Dark Mode is off** (`markdown._preinstalled.udl.xml`). With Dark Mode on, Notepad++ switches to `markdown._preinstalled_DM.udl.xml`, whose emphasis is already a readable light tan (`E3CEAB`) for that context.
+- A UDL reset/reinstall of Notepad++ will restore the navy colours — re-apply this edit if Markdown ever goes dark blue again.
+
+## 7. Added highlighting for Path of Exile loot filters (`.filter`)
+
+**Problem:** `.filter` files (Path of Exile / Path of Exile 2 loot filters) opened as plain default text — Notepad++ ships no lexer for them, and neither did this theme.
+
+**Mechanism:** a User Defined Language, [`DJD_PoE_Filter.udl.xml`](./DJD_PoE_Filter.udl.xml), registered for the `filter` extension. As with Markdown (section 6), UDL colours are invisible to theme XMLs, so the palette is hardcoded in the UDL file itself. Install: copy it to `%AppData%\Notepad++\userDefineLangs\` and restart Notepad++.
+
+Colour assignments follow the red > orange > green > yellow hierarchy:
+
+| Token | Examples | Colour | Style |
+| --- | --- | --- | --- |
+| Block starters | `Show` `Hide` | `F92672` red | **bold** |
+| Conditions | `BaseType` `ItemLevel` `Rarity` `Quality` `AreaLevel` `GemLevel` `MapTier` … | `FD971F` orange | regular |
+| Actions | `SetTextColor` `SetBorderColor` `SetFontSize` `PlayAlertSound` `PlayEffect` `MinimapIcon` `CustomAlertSound` `DisableDropSound` … | `A6E22E` green | regular |
+| Value words | `True` `False`, effect colours (`Red` `Aquamarine` …), icon shapes (`Star` `Circle` …) | `E6DB74` yellow | regular |
+| Quoted strings | `"Expert Dualstring Bow"`, `"Jewelllll.mp3"` | `E6DB74` yellow | regular |
+| Numbers | `200 200 200`, `>= 60`, font sizes (via Numbers prefix/extras = digits) | `FD971F` orange | regular |
+| Operators | `>= <= > < =` | `F92672` red | regular |
+| `#` comments (incl. Thai text, whole- or end-of-line) | | `75715E` olive | italic |
+
+So a typical block reads as: **red Show**, orange conditions, green actions, yellow quoted names, orange numbers, olive comments — on the `272822` background. `caseIgnored="yes"` so `show`/`SHOW` also highlight; keyword matching is whole-word (no prefix matching) so e.g. `Class` never bleeds into a longer word.
