@@ -147,3 +147,25 @@ Colour assignments follow the red > orange > green > yellow hierarchy:
 | `#` comments (incl. Thai text, whole- or end-of-line) | | `75715E` olive | italic |
 
 So a typical block reads as: **red Show**, orange conditions, green actions, yellow quoted names, orange numbers, olive comments — on the `272822` background. `caseIgnored="yes"` so `show`/`SHOW` also highlight; keyword matching is whole-word (no prefix matching) so e.g. `Class` never bleeds into a longer word.
+
+## 8. Added highlighting for `.env` (dotenv) files
+
+**Problem:** `.env` files opened as plain white Normal Text — Notepad++ has no lexer for them.
+
+**Mechanism:** same as the PoE filter — a User Defined Language, [`DJD_Env.udl.xml`](./DJD_Env.udl.xml), registered for the `env` extension, colours hardcoded to this palette. Install: copy to `%AppData%\Notepad++\userDefineLangs\` and restart. The dotfile `.env` matches the extension automatically; **variants like `.env.local` / `.env.production` do not** (their extension is `local` / `production`) — select *Language → ENV (DJD Monokai)* manually for those, or add the extensions to the UDL's `ext` attribute.
+
+Colour assignments (UDL 2.1 has no begin-of-line token, so the key colour comes from a trick):
+
+| Token | Colour | Style | How |
+| --- | --- | --- | --- |
+| `KEY` part of `KEY=value` | `F92672` red | regular | **DEFAULT style** — every non-comment `.env` line is `KEY=value`, so any unmatched text *is* the key |
+| `=value` part (to end of line) | `A6E22E` green | regular | delimiter 1: open `=`, close `((EOL))` |
+| `export` / `true` / `false` | `F92672` red | **bold** | KEYWORDS1 (`caseIgnored="yes"`), also bold inside green values via nesting bit 8 |
+| `"double quoted"` / `'single quoted'` | `E6DB74` yellow | regular | delimiters 2/3, nested inside the green value span (nesting bits 65536 + 131072 = 196616) |
+| `#` comments (incl. Thai text) | `75715E` olive | italic | line comment |
+
+Notes:
+
+- Number detection is deliberately **off** (empty `Numbers` lists): with keys living in the DEFAULT style, active number styling would paint digits inside keys like `API2_KEY` a different colour. Values like `PORT=8080` simply render green.
+- A line with no `=` (e.g. a bare word) renders red — acceptable, since that's invalid dotenv anyway.
+- Sources for the no-`((Line Start))` finding: [UDL delimiters doc](http://ivan-radic.github.io/udl-documentation/delimiters) and the [((BOL)) feature request](https://community.notepad-plus-plus.org/topic/16963/newline-as-delimiter-in-a-udl) on the Notepad++ community forum.

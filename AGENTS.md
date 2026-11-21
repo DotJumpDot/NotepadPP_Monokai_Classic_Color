@@ -4,7 +4,7 @@ Guidance for AI agents (and humans) working in this repository.
 
 ## What this repo is
 
-A Notepad++ colour theme (`DJD_Classic_Monokai.xml`) implementing the **classic Monokai palette** (Wimer Hazenberg), forked from mnmlize's "One Monokai". It also maintains companion **User Defined Languages (UDLs)** for file types Notepad++ has no lexer for (currently Path of Exile loot filters). Live on the maintainer's machine at `%AppData%\Notepad++\` — repo copies are the source of truth.
+A Notepad++ colour theme (`DJD_Classic_Monokai.xml`) implementing the **classic Monokai palette** (Wimer Hazenberg), forked from mnmlize's "One Monokai". It also maintains companion **User Defined Languages (UDLs)** for file types Notepad++ has no lexer for (currently Path of Exile loot filters and dotenv/`.env`). Live on the maintainer's machine at `%AppData%\Notepad++\` — repo copies are the source of truth.
 
 ## Files
 
@@ -12,6 +12,7 @@ A Notepad++ colour theme (`DJD_Classic_Monokai.xml`) implementing the **classic 
 | --- | --- |
 | `DJD_Classic_Monokai.xml` | The theme itself (Notepad++ theme-XML format) |
 | `DJD_PoE_Filter.udl.xml` | UDL for Path of Exile / PoE2 `.filter` loot filters, hardcoded to this palette |
+| `DJD_Env.udl.xml` | UDL for dotenv `.env` files, hardcoded to this palette (keys red via DEFAULT-style trick, values green, quotes yellow — see State Changes §8) |
 | `State Changes.md` | **Change log — update it for every change**, with numbered sections explaining what + why |
 | `README.md` | User-facing install instructions + credits |
 | `screenshot.png` | Shows the YAML styling (regenerating it requires manual Notepad++ screenshots) |
@@ -43,7 +44,7 @@ Classic Monokai hexes used throughout; priority hierarchy is **red > orange > gr
 ## Deployment (to the maintainer's machine)
 
 - Theme → `%AppData%\Notepad++\themes\DJD_Classic_Monokai.xml`
-- UDLs → `%AppData%\Notepad++\userDefineLangs\`
+- UDLs (`DJD_PoE_Filter.udl.xml`, `DJD_Env.udl.xml`) → `%AppData%\Notepad++\userDefineLangs\`
 - Notepad++ must be restarted afterwards; Dark Mode must be **off** (config `DarkMode enable="no"`) — in Dark Mode Notepad++ switches to a different theme + the `_DM` Markdown UDL, which this repo doesn't manage.
 
 ## Conventions

@@ -1,11 +1,11 @@
 DJD Classic Monokai Theme for Notepad++
 =============
 
-Based on the classic Monokai palette by Wimer Hazenberg, this is a Notepad++ port that started from the "One Monokai" XML by mnmlize and has been re-themed to match the original Monokai look-and-feel (not the One-Dark derivative most people call "blue Monokai"). It also adds highlighting for `.yml` / `.yaml` files out of the box, plus a companion User Defined Language for Path of Exile loot filter (`.filter`) files.
+Based on the classic Monokai palette by Wimer Hazenberg, this is a Notepad++ port that started from the "One Monokai" XML by mnmlize and has been re-themed to match the original Monokai look-and-feel (not the One-Dark derivative most people call "blue Monokai"). It also adds highlighting for `.yml` / `.yaml` files out of the box, plus companion User Defined Languages for Path of Exile loot filter (`.filter`) and dotenv (`.env`) files.
 
 Tested Languages
 ----------
-PHP / CSS / HTML / JavaScript / XML / YAML / Ruby / C# / C++ / SQL / Perl / Pascal / Python / **PoE loot filters (`.filter`, via the bundled UDL)**
+PHP / CSS / HTML / JavaScript / XML / YAML / Ruby / C# / C++ / SQL / Perl / Pascal / Python / **PoE loot filters (`.filter`)** / **dotenv (`.env`)** — the last two via the bundled UDLs
 
 Installation
 --------------------------
@@ -21,18 +21,28 @@ Installation
 5. Select `DJD Classic Monokai` from the theme drop-down box.
 6. Click *Save & Close*
 
-**Path of Exile loot filter highlighting (optional):**
+**Extra syntax highlighting for file types Notepad++ doesn't know (optional UDLs):**
 
-1. Download [`DJD_PoE_Filter.udl.xml`](./DJD_PoE_Filter.udl.xml)
-2. Copy it to `%APPDATA%\Notepad++\userDefineLangs\`
-3. Restart Notepad++. Any `.filter` file is now highlighted automatically:
+Notepad++ colours these languages through User Defined Languages, which are separate files from the theme (themes cannot style UDL languages). Copy either file to `%APPDATA%\Notepad++\userDefineLangs\` and restart Notepad++ — matching files are then highlighted automatically.
 
-   - `Show` / `Hide` — red, bold
-   - conditions (`BaseType`, `ItemLevel`, `Rarity`, …) — orange
-   - actions (`SetTextColor`, `PlayAlertSound`, `MinimapIcon`, …) — green
-   - quoted names & value words (`"Orb of Alchemy"`, `Red`, `Star`, …) — yellow
-   - numbers (RGB triplets, levels, font sizes) — orange
-   - `#` comments — olive, italic
+*PoE loot filters — [`DJD_PoE_Filter.udl.xml`](./DJD_PoE_Filter.udl.xml) (any `.filter` file):*
+
+- `Show` / `Hide` — red, bold
+- conditions (`BaseType`, `ItemLevel`, `Rarity`, …) — orange
+- actions (`SetTextColor`, `PlayAlertSound`, `MinimapIcon`, …) — green
+- quoted names & value words (`"Orb of Alchemy"`, `Red`, `Star`, …) — yellow
+- numbers (RGB triplets, levels, font sizes) — orange
+- `#` comments — olive, italic
+
+*dotenv — [`DJD_Env.udl.xml`](./DJD_Env.udl.xml) (any `.env` file):*
+
+- `KEY` before the `=` — red
+- value after the `=` — green
+- `export` / `true` / `false` — red, bold
+- `"quoted"` / `'quoted'` values — yellow
+- `#` comments — olive, italic
+
+  `.env.local`, `.env.production` and similar variants don't share the `env` extension — pick *Language → ENV (DJD Monokai)* for them manually.
 
 **Markdown fix (optional but recommended with this theme):**
 
